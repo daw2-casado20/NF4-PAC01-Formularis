@@ -1,0 +1,19 @@
+<?php
+$name = $_POST["name"];
+$coments = $_POST["coments"];   
+$rating = $_POST["rating"];   
+$fecha = date("Y-m-d");
+$id = $_POST["id"];
+
+$db = mysqli_connect('localhost' , 'adri', 'root') or 
+    die ('Unable to connect. Check your connection parameters.');
+
+//make sure you're using the correct database
+mysqli_select_db($db,'mimusica') or die(mysqli_error($db));
+
+$query = "INSERT INTO criticas (critica_music_id,critica_fecha, critica_nombre, critica_comentario,critica_puntacion) VALUES ('$id','$fecha','$name','$coments','$rating')";   
+
+  $result = mysqli_query($db,$query) or die(mysqli_error($db));
+
+echo "Los datos han sido guardados con exito";  
+?>
